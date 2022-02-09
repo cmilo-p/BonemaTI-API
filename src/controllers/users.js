@@ -13,7 +13,7 @@ var controller = {
             var validate_email = !validator.isEmpty(params.email);
             var validate_username = !validator.isEmpty(params.username);
             var validate_password = !validator.isEmpty(params.password);
-            var validate_rol = !validator.isEmpty(params.rol);
+            var validate_role = !validator.isEmpty(params.role);
 
         } catch (error) {
             return res.status(400).send({
@@ -22,14 +22,14 @@ var controller = {
             });
         }
 
-        if (validate_name && validate_email && validate_username && validate_password && validate_rol) {
+        if (validate_name && validate_email && validate_username && validate_password && validate_role) {
 
             var user = new User();
             user.name = params.name;
             user.email = params.email;
             user.username = params.username;
             user.password = params.password;
-            user.rol = params.rol;
+            user.role = params.role;
 
             user.save((error, userStored) => {
 
@@ -60,7 +60,7 @@ var controller = {
         var last = req.params.last;
 
         if (last || last != undefined) {
-            query.limit(5);
+            query.limit(100);
         }
 
         query.sort('_id').exec((error, users) => {
@@ -123,7 +123,7 @@ var controller = {
             var validate_email = !validator.isEmpty(params.email);
             var validate_username = !validator.isEmpty(params.username);
             var validate_password = !validator.isEmpty(params.password);
-            var validate_rol = !validator.isEmpty(params.rol);
+            var validate_role = !validator.isEmpty(params.role);
 
         } catch (error) {
             return res.status(400).send({
@@ -132,7 +132,7 @@ var controller = {
             });
         }
 
-        if (validate_name && validate_email && validate_username && validate_password && validate_rol) {
+        if (validate_name && validate_email && validate_username && validate_password && validate_role) {
 
             User.findOneAndUpdate({ _id: userId }, params, { new: true }, (error, userUpdate) => {
                 if (error) {
@@ -190,7 +190,7 @@ var controller = {
                 { "name": { "$regex": searchUser, "$options": "i" } },
                 { "email": { "$regex": searchUser, "$options": "i" } },
                 { "username": { "$regex": searchUser, "$options": "i" } },
-                { "rol": { "$regex": searchUser } }
+                { "role": { "$regex": searchUser } }
             ]
         })
             .sort([['registration_Date', 'descending']])
