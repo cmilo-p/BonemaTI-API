@@ -57,11 +57,6 @@ var controller = {
 
     getUsers: (req, res) => {
         var query = User.find({});
-        var last = req.params.last;
-
-        if (last || last != undefined) {
-            query.limit(100);
-        }
 
         query.sort('_id').exec((error, users) => {
 

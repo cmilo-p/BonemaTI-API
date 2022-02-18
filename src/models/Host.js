@@ -9,6 +9,7 @@ const hostSchema = new Schema({
     serial: { type: String, default: null },
     marca: { type: String, default: null },
     modelo: { type: String, default: null },
+    location: { type: String, default: 'Sistemas' },
 
     hardware: {
         ram: { type: String },

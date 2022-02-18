@@ -5,7 +5,7 @@ const HostController = require('../controllers/host');
 const router = express.Router();
 
 router.post('/host/save', HostController.save);
-router.get('/hosts/:last?', HostController.getHosts);
+router.get('/hosts', HostController.getHosts);
 router.get('/host/:id', HostController.getHost);
 router.put('/host/:id', HostController.update);
 router.delete('/host/:id', HostController.delete);

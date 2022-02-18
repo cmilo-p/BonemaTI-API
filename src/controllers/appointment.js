@@ -58,11 +58,6 @@ var controller = {
 
     getAppointments: (req, res) => {
         var query = Appointment.find({});
-        var last = req.params.last;
-
-        if (last || last != undefined) {
-            query.limit(5);
-        }
 
         query.sort('_id').exec((error, appointment) => {
 

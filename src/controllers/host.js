@@ -60,11 +60,6 @@ var controller = {
 
     getHosts: (req, res) => {
         var query = Host.find({});
-        var last = req.params.last;
-
-        if (last || last == undefined) {
-            query.limit(5);
-        }
 
         query.sort('_id').exec((error, hosts) => {
 

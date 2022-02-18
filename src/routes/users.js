@@ -5,7 +5,7 @@ const UserController = require('../controllers/users');
 const router = express.Router();
 
 router.post('/user/save', UserController.save);
-router.get('/users/:last?', UserController.getUsers);
+router.get('/users', UserController.getUsers);
 router.get('/user/:id', UserController.getUser);
 router.put('/user/:id', UserController.update);
 router.delete('/user/:id', UserController.delete);
