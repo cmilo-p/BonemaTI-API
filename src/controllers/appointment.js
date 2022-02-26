@@ -59,7 +59,7 @@ var controller = {
     getAppointments: (req, res) => {
         var query = Appointment.find({});
 
-        query.sort('_id').exec((error, appointment) => {
+        query.sort('_id').exec((error, appointments) => {
 
             if (error) {
                 return res.status(500).send({
@@ -68,7 +68,7 @@ var controller = {
                 });
             }
 
-            if (!appointment) {
+            if (!appointments) {
                 return res.status(404).send({
                     status: 'error',
                     message: '¡No hay datos para mostrar!'
@@ -77,7 +77,7 @@ var controller = {
 
             return res.status(200).send({
                 status: 'success',
-                appointment
+                appointments
             });
         });
     },

@@ -9,7 +9,7 @@ const appointmentSchema = new Schema({
     support_tec: { type: String, required: true },
     procedures: { type: String },
     observations: { type: String },
-    state: { type: String, default: 'Agendado' },
+    status: { type: String, default: 'Agendado' },
 
     /* Datos de Movimiento */
     registration_Date: { type: Date, default: Date.now }
