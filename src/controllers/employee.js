@@ -12,16 +12,15 @@ var controller = {
             var validate_name = !validator.isEmpty(params.name);
             var validate_email = !validator.isEmpty(params.email);
             var validate_occupation = !validator.isEmpty(params.occupation);
-            var validate_phoneNumber = !validator.isEmpty(params.phoneNumber)
 
         } catch (error) {
             return res.status(400).send({
                 status: 'error',
                 message: '¡Faltan datos por enviar!'
-            })
+            });
         }
 
-        if (validate_name && validate_email && validate_occupation && validate_phoneNumber) {
+        if (validate_name && validate_email && validate_occupation) {
 
             var employee = new Employee();
 
@@ -29,6 +28,7 @@ var controller = {
             employee.email = params.email;
             employee.occupation = params.occupation;
             employee.phoneNumber = params.phoneNumber;
+            employee.extension = params.extension;
 
             employee.save((error, employeeStored) => {
 
@@ -41,14 +41,13 @@ var controller = {
 
                 return res.status(201).send({
                     status: 'success',
-                    user: employeeStored
+                    employee: employeeStored
                 });
 
             });
 
         } else {
-            /* Revisar # status */
-            return res.status(200).send({
+            return res.status(400).send({
                 status: 'error',
                 message: '¡Los datos no son válidos!'
             });
@@ -118,8 +117,6 @@ var controller = {
             var validator_name = !validator.isEmpty(params.name);
             var validator_email = !validator.isEmpty(params.email);
             var validator_occupation = !validator.isEmpty(params.occupation);
-            var validator_phoneNumber = !validator.isEmpty(params.phoneNumber);
-
         } catch (error) {
             return res.status(500).send({
                 status: 'error',
@@ -127,7 +124,7 @@ var controller = {
             });
         }
 
-        if (validator_name && validator_email && validator_occupation && validator_phoneNumber) {
+        if (validator_name && validator_email && validator_occupation) {
 
             Employee.findOneAndUpdate({ _id: userId }, params, { new: true }, (error, employeeUpdate) => {
                 if (error) {
@@ -174,9 +171,9 @@ var controller = {
             return res.status(200).send({
                 status: 'success',
                 employeeRemoved
-            })
+            });
 
-        })
+        });
     },
 
     search: (req, res) => {
@@ -187,7 +184,8 @@ var controller = {
                 { "name": { "$regex": searchDeleted, "$options": "i" } },
                 { "email": { "$regex": searchDeleted, "$options": "i" } },
                 { "occupation": { "$regex": searchDeleted, "$options": "i" } },
-                { "phoneNumber": { "$regex": searchDeleted, "$options": "i" } }
+                { "phoneNumber": { "$regex": searchDeleted, "$options": "i" } },
+                { "extension": { "$regex": searchDeleted, "$options": "i" } }
             ]
         })
             .sort([['registration_Date', 'descending']])

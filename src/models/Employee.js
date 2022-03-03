@@ -6,6 +6,7 @@ const employeeSchema = new Schema({
     email: { type: String, required: true },
     occupation: { type: String, required: true },
     phoneNumber: { type: String },
+    extension: {type: String},
     state: { type: Boolean, default: true },
 
     /* Datos de Movimiento */
