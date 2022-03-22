@@ -17,7 +17,9 @@ var controller = {
 
         } catch (error) {
             return res.status(400).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Appointment',
+                method: 'AppointmentController.save',
                 message: '¡Faltan datos por enviar!'
             });
         }
@@ -36,7 +38,9 @@ var controller = {
 
                 if (error || !appointmentStored) {
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Appointment',
+                        method: 'AppointmentController.save',
                         message: '¡El Appointment no se almaceno!'
                     });
                 }
@@ -50,7 +54,9 @@ var controller = {
         } else {
             /* Revisar # status */
             return res.status(200).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Appointment',
+                method: 'AppointmentController.save',
                 message: '¡Los datos no son válidos!'
             });
         }
@@ -63,14 +69,18 @@ var controller = {
 
             if (error) {
                 return res.status(500).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Appointment',
+                    method: 'AppointmentController.getAppointments',
                     message: '¡Los datos no son válidos!'
                 });
             }
 
             if (!appointments) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Appointment',
+                    method: 'AppointmentController.getAppointments',
                     message: '¡No hay datos para mostrar!'
                 });
             }
@@ -88,7 +98,9 @@ var controller = {
         /* Revisar validación, cuando no existe el usuario, no funciona */
         if (!appointmentId || appointmentId == null) {
             return res.status(404).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Appointment',
+                method: 'AppointmentController.getAppointment',
                 message: '¡No existen datos para mostrar!'
             });
         }
@@ -98,7 +110,9 @@ var controller = {
             /* Validación length causa error */
             if (error || appointment.length === 0) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Appointment',
+                    method: 'AppointmentController.getAppointment',
                     message: '¡No existe el registro en la base de datos!'
                 });
             }
@@ -123,7 +137,9 @@ var controller = {
 
         } catch (error) {
             return res.status(400).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Appointment',
+                method: 'AppointmentController.update',
                 message: '¡Faltan datos por enviar!'
             });
         }
@@ -133,14 +149,18 @@ var controller = {
             Appointment.findOneAndUpdate({ _id: appointmentId }, params, { new: true }, (error, appointmentUpdate) => {
                 if (error) {
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Appointment',
+                        method: 'AppointmentController.update',
                         message: '¡Error al actualizar!'
                     });
                 }
 
                 if (!appointmentUpdate) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Appointment',
+                        method: 'AppointmentController.update',
                         message: '¡No existe el appointment en la base de datos!'
                     });
                 }
@@ -159,14 +179,18 @@ var controller = {
         Appointment.findOneAndDelete({ _id: appointmentId }, (error, appointmentRemoved) => {
             if (error) {
                 return res.status(500).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Appointment',
+                    method: 'AppointmentController.delete',
                     message: '¡Error al eliminar el Appointment!'
                 });
             }
 
             if (!appointmentRemoved) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Appointment',
+                    method: 'AppointmentController.delete',
                     message: '¡No se ha borrado el Appointment, posiblemente no este agendado!'
                 });
             }
@@ -197,13 +221,16 @@ var controller = {
                     console.log(error);
                     return res.status(500).send({
                         status: 'error',
+                        controller: 'appointment',
                         message: '¡Error en la petición!'
                     });
                 }
 
                 if (!appointmentData || appointmentData.length <= 0) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Appointment',
+                        method: 'AppointmentController.search',
                         message: '¡No hay datos que coincidan con tu búsqueda!'
                     });
                 }

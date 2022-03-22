@@ -17,7 +17,9 @@ var controller = {
 
         } catch (error) {
             return res.status(400).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'User',
+                method: 'UserController.save',
                 message: '¡Faltan datos por enviar!'
             });
         }
@@ -35,7 +37,9 @@ var controller = {
 
                 if (error || !userStored) {
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'User',
+                        method: 'UserController.save',
                         message: '¡El usuario no se ha almacenado!'
                     });
                 }
@@ -49,7 +53,9 @@ var controller = {
         } else {
             /* Revisar # status */
             return res.status(200).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'User',
+                method: 'UserController.save',
                 message: '¡Los datos no son válidos!'
             });
         }
@@ -62,14 +68,18 @@ var controller = {
 
             if (error) {
                 return res.status(500).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'User',
+                    method: 'UserController.getUsers',
                     message: '¡Los datos no son válidos!'
                 });
             }
 
             if (!users) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'User',
+                    method: 'UserController.getUsers',
                     message: '¡No hay datos para mostrar!'
                 });
             }
@@ -87,7 +97,9 @@ var controller = {
         /* Revisar validación, cuando no existe el usuario, no funciona */
         if (!userId || userId == null) {
             return res.status(404).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'User',
+                method: 'UserController.getUser',
                 message: '¡No existen datos para mostrar!'
             });
         }
@@ -97,7 +109,9 @@ var controller = {
             /* Validación length causa error */
             if (error || user.length === 0) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'User',
+                    method: 'UserController.getUser',
                     message: '¡No existe el usuario en la base de datos!'
                 });
             }
@@ -122,7 +136,9 @@ var controller = {
 
         } catch (error) {
             return res.status(400).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'User',
+                method: 'UserController.update',
                 message: '¡Faltan datos por enviar!'
             });
         }
@@ -132,14 +148,18 @@ var controller = {
             User.findOneAndUpdate({ _id: userId }, params, { new: true }, (error, userUpdate) => {
                 if (error) {
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'User',
+                        method: 'UserController.update',
                         message: '¡Error al actualizar!'
                     });
                 }
 
                 if (!userUpdate) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'User',
+                        method: 'UserController.update',
                         message: '¡No existe el usuario en la base de datos!'
                     });
                 }
@@ -158,14 +178,18 @@ var controller = {
         User.findOneAndDelete({ _id: userId }, (error, userRemoved) => {
             if (error) {
                 return res.status(500).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'User',
+                    method: 'UserController.delete',
                     message: '¡Error al eliminar el usuario!'
                 });
             }
 
             if (!userRemoved) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'User',
+                    method: 'UserController.delete',
                     message: '¡No se ha borrado el usuario, posiblemente no exista!'
                 });
             }
@@ -194,14 +218,18 @@ var controller = {
                 if (error) {
                     console.log(error);
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'User',
+                        method: 'UserController.search',
                         message: '¡Error en la petición!'
                     });
                 }
 
                 if (!userData || userData.length <= 0) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'User',
+                        method: 'UserController.search',
                         message: '¡No hay usuarios que coincidan con tu búsqueda!'
                     });
                 }
@@ -222,7 +250,9 @@ var controller = {
 
         } catch (error) {
             return res.status(400).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'User',
+                method: 'UserController.signIn',
                 message: '¡Faltan datos por enviar!'
             });
         }
@@ -238,21 +268,27 @@ var controller = {
 
                 if (error) {
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'User',
+                        method: 'UserController.signIn',
                         message: '¡Error en la petición!'
                     });
                 }
 
                 if (!userdata || userdata == null) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'User',
+                        method: 'UserController.signIn',
                         message: '¡No existe el usuario en la base de datos!'
                     });
                 }
 
-                if(user.password != userdata.password ) {
+                if (user.password != userdata.password) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'User',
+                        method: 'UserController.signIn',
                         message: '¡La contraseña es incorrecta!'
                     });
                 }
@@ -266,7 +302,9 @@ var controller = {
         } else {
             /* Revisar # status */
             return res.status(200).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'User',
+                method: 'UserController.signIn',
                 message: '¡Los datos no son válidos!'
             });
         }

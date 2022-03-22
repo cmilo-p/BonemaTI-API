@@ -15,7 +15,9 @@ var controller = {
 
         } catch (error) {
             return res.status(400).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Employee',
+                method: 'EmployeeController.save',
                 message: '¡Faltan datos por enviar!'
             });
         }
@@ -34,7 +36,9 @@ var controller = {
 
                 if (error || !employeeStored) {
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Employee',
+                        method: 'EmployeeController.save',
                         message: '¡El empleado no se ha almacenado!'
                     });
                 }
@@ -48,7 +52,9 @@ var controller = {
 
         } else {
             return res.status(400).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Employee',
+                method: 'EmployeeController.save',
                 message: '¡Los datos no son válidos!'
             });
         }
@@ -61,14 +67,18 @@ var controller = {
 
             if (error) {
                 return res.status(500).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Employee',
+                    method: 'EmployeeController.getEmployees',
                     message: '¡Los datos no son válidos!'
                 });
             }
 
             if (!employees) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Employee',
+                    method: 'EmployeeController.getEmployees',
                     message: '¡No hay datos para mostrar!'
                 });
             }
@@ -86,7 +96,9 @@ var controller = {
 
         if (!employeeId || employeeId == null) {
             return res.status(404).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Employee',
+                method: 'EmployeeController.getEmployee',
                 message: '¡No existen datos para mostrar!'
             });
         }
@@ -97,7 +109,9 @@ var controller = {
             if (error || employee.length === 0) {
 
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Employee',
+                    method: 'EmployeeController.getEmployee',
                     message: '¡No existe el usuario en la base de datos!'
                 });
             }
@@ -119,7 +133,9 @@ var controller = {
             var validator_occupation = !validator.isEmpty(params.occupation);
         } catch (error) {
             return res.status(500).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Employee',
+                method: 'EmployeeController.update',
                 message: '¡Faltan datos por enviar!'
             });
         }
@@ -129,14 +145,18 @@ var controller = {
             Employee.findOneAndUpdate({ _id: userId }, params, { new: true }, (error, employeeUpdate) => {
                 if (error) {
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Employee',
+                        method: 'EmployeeController.update',
                         message: '¡Error al actualizar!'
                     });
                 }
 
                 if (!employeeUpdate) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Employee',
+                        method: 'EmployeeController.update',
                         message: '¡No existe el empleado en la base de datos!'
                     });
                 }
@@ -156,14 +176,18 @@ var controller = {
         Employee.findByIdAndDelete({ _id: employeeId }, (error, employeeRemoved) => {
             if (error) {
                 return res.status(500).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Employee',
+                    method: 'EmployeeController.delete',
                     message: '¡Error al eliminar el empleado!'
                 });
             }
 
             if (!employeeRemoved) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Employee',
+                    method: 'EmployeeController.delete',
                     message: '¡No se ha borrado el usuario, posiblemente no exista!'
                 });
             }
@@ -194,14 +218,18 @@ var controller = {
                 if (error) {
                     console.log(error);
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Employee',
+                        method: 'EmployeeController.search',
                         message: '¡Error en la petición!'
                     });
                 }
 
                 if (!employeeData || employeeData.length <= 0) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Employee',
+                        method: 'EmployeeController.search',
                         message: '¡No hay empleados que coincidan con tu búsqueda!'
                     });
                 }

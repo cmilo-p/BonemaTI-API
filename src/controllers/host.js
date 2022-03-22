@@ -16,7 +16,9 @@ var controller = {
 
         } catch (error) {
             return res.status(400).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Host',
+                method: 'HostController.save',
                 message: '¡Faltan datos por enviar!'
             });
         }
@@ -39,7 +41,9 @@ var controller = {
 
                 if (error || !hostStored) {
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Host',
+                        method: 'HostController.save',
                         message: '¡El host no se ha almacenado!',
                     });
                 }
@@ -52,7 +56,9 @@ var controller = {
         } else {
             /* Revisar # status */
             return res.status(200).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Host',
+                method: 'HostController.save',
                 message: '¡Los datos no son válidos!'
             });
         }
@@ -65,14 +71,18 @@ var controller = {
 
             if (error) {
                 return res.status(500).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Host',
+                    method: 'HostController.getHosts',
                     message: '¡Los datos no son válidos!'
                 });
             }
 
             if (!hosts) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Host',
+                    method: 'HostController.getHosts',
                     message: '¡No hay datos para mostrar!'
                 });
             }
@@ -90,7 +100,9 @@ var controller = {
         /* Revisar validación, cuando no existe el usuario, no funciona */
         if (!hostId || hostId == null) {
             return res.status(404).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Host',
+                method: 'HostController.getHost',
                 message: '¡No existen datos para mostrar!'
             });
         }
@@ -100,7 +112,9 @@ var controller = {
             /* Validación length causa error */
             if (error || host.length === 0) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Host',
+                    method: 'HostController.getHost',
                     message: '¡No existe el usuario en la base de datos!'
                 });
             }
@@ -124,7 +138,9 @@ var controller = {
 
         } catch (error) {
             return res.status(400).send({
-                status: 'error',
+                status: 'Error',
+                controller: 'Host',
+                method: 'HostController.update',
                 message: '¡Faltan datos por enviar!'
             });
         }
@@ -134,14 +150,18 @@ var controller = {
             Host.findOneAndUpdate({ _id: hostId }, params, { new: true }, (error, hostUpdate) => {
                 if (error) {
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Host',
+                        method: 'HostController.update',
                         message: '¡Error al actualizar!'
                     });
                 }
 
                 if (!hostUpdate) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Host',
+                        method: 'HostController.update',
                         message: '¡No existe el host en la base de datos!'
                     });
                 }
@@ -160,14 +180,18 @@ var controller = {
         Host.findOneAndDelete({ _id: hostId }, (error, hostRemoved) => {
             if (error) {
                 return re.status(500).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Host',
+                    method: 'HostController.delete',
                     message: '¡Error al eliminar el host!'
                 });
             }
 
             if (!hostRemoved) {
                 return res.status(404).send({
-                    status: 'error',
+                    status: 'Error',
+                    controller: 'Host',
+                    method: 'HostController.delete',
                     message: '¡No se ha borrado el host, posiblemente no exista!'
                 });
             }
@@ -200,14 +224,18 @@ var controller = {
                 if (error) {
                     console.log(error);
                     return res.status(500).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Host',
+                        method: 'HostController.search',
                         message: '¡Error en la petición!'
                     });
                 }
 
                 if (!hostData || hostData.length <= 0) {
                     return res.status(404).send({
-                        status: 'error',
+                        status: 'Error',
+                        controller: 'Host',
+                        method: 'HostController.search',
                         message: '¡No hay usuarios que coincidan con tu búsqueda!'
                     });
                 }
