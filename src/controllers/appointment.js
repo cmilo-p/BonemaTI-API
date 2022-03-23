@@ -47,7 +47,7 @@ var controller = {
 
                 return res.status(201).send({
                     status: 'success',
-                    user: appointmentStored
+                    appointment: appointmentStored
                 });
 
             });
