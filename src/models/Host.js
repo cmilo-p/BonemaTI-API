@@ -20,7 +20,23 @@ const hostSchema = new Schema({
         bios: { type: String },
     },
 
-    software: [],
+    software: [{
+        system: {
+            name: { type: String },
+            functionality: { type: String },
+            license: { type: String },
+        },
+        office: {
+            name: { type: String },
+            functionality: { type: String },
+            license: { type: String },
+        },
+        antivirus: {
+            name: { type: String },
+            functionality: { type: String },
+            license: { type: String },
+        }
+    }],
 
     observation: { type: String, default: null },
     state: { type: Boolean, default: true },
