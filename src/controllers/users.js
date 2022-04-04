@@ -301,7 +301,7 @@ var controller = {
 
         } else {
             /* Revisar # status */
-            return res.status(200).send({
+            return res.status(400).send({
                 status: 'Error',
                 controller: 'User',
                 method: 'UserController.signIn',
