@@ -65,7 +65,7 @@ var controller = {
     getAppointments: (req, res) => {
         var query = Appointment.find({});
 
-        query.sort('_id').exec((error, appointments) => {
+        query.sort('-_id').exec((error, appointments) => {
 
             if (error) {
                 return res.status(500).send({

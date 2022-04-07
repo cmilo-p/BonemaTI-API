@@ -67,7 +67,7 @@ var controller = {
     getHosts: (req, res) => {
         var query = Host.find({});
 
-        query.sort('_id').exec((error, hosts) => {
+        query.sort('-_id').exec((error, hosts) => {
 
             if (error) {
                 return res.status(500).send({
